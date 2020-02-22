@@ -43,6 +43,7 @@ public abstract class BaseImage {
 
     public BaseImage(BufferedImage bi) {
         bufferedImage = bi;
+        iTesseract.setDatapath("/app/lib/tesseract/tessdata");
     }
 
     private DateTimeFormatter dateTimeFormat =
