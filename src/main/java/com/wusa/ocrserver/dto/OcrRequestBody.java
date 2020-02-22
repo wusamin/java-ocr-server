@@ -9,8 +9,8 @@ public class OcrRequestBody {
     private MultipartFile image;
 
     private String fileName;
-    //
-    //    private String imageType;
-    //
+
+    private String imageType;
+
     //    private String token;
 }

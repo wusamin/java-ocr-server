@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sun.jna.NativeLibrary;
+import com.wusa.ocrserver.base.BaseImage;
 import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.OcrRequestBody;
 import com.wusa.ocrserver.image.KancollePcImage;
@@ -24,15 +24,8 @@ import com.wusa.ocrserver.service.OcrService;
 @RequestMapping(value = "/ocr")
 public class OcrController {
 
-    static {
-        //        System.loadLibrary("libtesseract3051.dll");
-        //        System.load("/app/lib/tesseract/linux-x86-64/libtesseract.so");
-        //        System.load("/app/lib/tesseract/others/libarchive.so.13");
-        NativeLibrary.addSearchPath("tesseract", "/app/lib/tesseract/");
-    }
-
     @Autowired
-    OcrService ocrService;
+    private OcrService ocrService;
 
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> test() {
@@ -58,16 +51,28 @@ public class OcrController {
         }
     }
 
-    @PostMapping(value = "/imagetest", produces = MediaType.APPLICATION_JSON_VALUE)
+    @SuppressWarnings("unchecked")
+    @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object doOcr2(@ModelAttribute OcrRequestBody reqBody) {
-        System.out.println(reqBody.getImage().toString());
-        System.out.println(reqBody.getFileName());
+
+        Class<? extends BaseImage> clazz;
 
         try {
-            return ocrService.doOcr(
-                    ImageIO.read(new ByteArrayInputStream(
-                            reqBody.getImage().getBytes())),
-                    KancollePcImage.class);
+            clazz =
+                (Class<? extends BaseImage>) Class
+                        .forName(reqBody.getImageType());
+            if (!(clazz instanceof Class)) {
+
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            return Map.of("error", e1, "result", "There is no such a class.");
+        }
+
+        try {
+            return ocrService.doOcr(ImageIO.read(
+                    new ByteArrayInputStream(reqBody.getImage().getBytes())),
+                    clazz);
         } catch (IOException e) {
             e.printStackTrace();
             return Map.of("error", e);
