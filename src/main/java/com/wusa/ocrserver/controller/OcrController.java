@@ -39,7 +39,7 @@ public class OcrController {
     }
 
     @PostMapping(value = "/imagetest", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object doOcr(@RequestBody OcrRequestBody reqBody) {
+    public Object doOcr2(@RequestBody OcrRequestBody reqBody) {
         try {
             return ocrService.doOcr(
                     ImageIO.read(new ByteArrayInputStream(
@@ -53,20 +53,17 @@ public class OcrController {
 
     @SuppressWarnings("unchecked")
     @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object doOcr2(@ModelAttribute OcrRequestBody reqBody) {
+    public Object doOcr(@ModelAttribute OcrRequestBody reqBody) {
 
         Class<? extends BaseImage> clazz;
 
         try {
             clazz =
-                (Class<? extends BaseImage>) Class
-                        .forName(reqBody.getImageType());
-            if (!(clazz instanceof Class)) {
-
-            }
+                (Class<? extends BaseImage>) Class.forName(
+                        "com.wusa.ocrserver.image." + reqBody.getImageType());
         } catch (Exception e1) {
             e1.printStackTrace();
-            return Map.of("error", e1, "result", "There is no such a class.");
+            return Map.of("error", "There is no such a class.");
         }
 
         try {
