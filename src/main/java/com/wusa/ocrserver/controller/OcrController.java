@@ -29,6 +29,7 @@ public class OcrController {
     static {
         //        System.loadLibrary("libtesseract3051.dll");
         System.load("/app/lib/tesseract/linux-x86-64/libtesseract.so");
+        System.load("/app/lib/tesseract/others/libarchive.so.13");
     }
 
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
