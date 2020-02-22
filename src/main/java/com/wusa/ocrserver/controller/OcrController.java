@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sun.jna.NativeLibrary;
 import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.OcrRequestBody;
 import com.wusa.ocrserver.image.KancollePcImage;
@@ -23,14 +24,16 @@ import com.wusa.ocrserver.service.OcrService;
 @RequestMapping(value = "/ocr")
 public class OcrController {
 
-    @Autowired
-    OcrService ocrService;
-
     static {
         //        System.loadLibrary("libtesseract3051.dll");
         System.load("/app/lib/tesseract/linux-x86-64/libtesseract.so");
         System.load("/app/lib/tesseract/others/libarchive.so.13");
+        NativeLibrary.addSearchPath("libtesseract.so",
+                "/app/lib/tesseract/linux-x86-64/");
     }
+
+    @Autowired
+    OcrService ocrService;
 
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> test() {
