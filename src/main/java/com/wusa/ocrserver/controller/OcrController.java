@@ -38,7 +38,7 @@ public class OcrController {
         return ocrService.ocrTest();
     }
 
-    @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/imagetest", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object doOcr(@RequestBody OcrRequestBody reqBody) {
         try {
             return ocrService.doOcr(
