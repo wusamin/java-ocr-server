@@ -26,10 +26,10 @@ public class OcrController {
 
     static {
         //        System.loadLibrary("libtesseract3051.dll");
-        System.load("/app/lib/tesseract/linux-x86-64/libtesseract.so");
-        System.load("/app/lib/tesseract/others/libarchive.so.13");
-        NativeLibrary.addSearchPath("libtesseract.so",
-                "/app/lib/tesseract/linux-x86-64/");
+        //        System.load("/app/lib/tesseract/linux-x86-64/libtesseract.so");
+        //        System.load("/app/lib/tesseract/others/libarchive.so.13");
+        NativeLibrary.addSearchPath("linux-x86-64/libtesseract.so",
+                "/app/lib/tesseract/");
     }
 
     @Autowired
