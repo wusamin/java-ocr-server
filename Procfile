@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=${PORT} -jar target/ocr-server.jar
+web: export LD_LIBRARY_PATH=/app/lib/tesseract/others/ && java $JAVA_OPTS -Dserver.port=${PORT} -jar target/ocr-server.jar
