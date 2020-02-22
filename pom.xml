@@ -20,6 +20,14 @@
 		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>project.local</id>
+			<name>project</name>
+			<url>file:${project.basedir}/repo</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,14 +69,14 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
-		<!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j <dependency> 
+			<groupId>net.sourceforge.tess4j</groupId> <artifactId>tess4j</artifactId> 
+			<version>4.5.1</version> </dependency> -->
 		<dependency>
-			<groupId>net.sourceforge.tess4j</groupId>
-			<artifactId>tess4j</artifactId>
-			<version>4.5.1</version>
+			<groupId>project.for.tess4j</groupId>
+			<artifactId>project-tess4j</artifactId>
+			<version>1.0.0</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
