@@ -1,1 +1,1 @@
-web:java -jar target/ocr-server.jar
+web: java -jar target/ocr-server.jar
