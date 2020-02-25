@@ -3,7 +3,6 @@ package com.wusa.ocrserver.image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Date;
 
 import com.wusa.ocrserver.base.BaseImage;
@@ -11,11 +10,6 @@ import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.TKancolleResorcesDto;
 
 public class KancolleImage extends BaseImage {
-
-    public KancolleImage(Path path) {
-        super(path);
-    }
-
     public KancolleImage(BufferedImage bi) {
         super(bi);
     }

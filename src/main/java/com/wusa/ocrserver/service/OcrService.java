@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import com.wusa.ocrserver.base.BaseImage;
 import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.TKancolleResorcesDto;
-import com.wusa.ocrserver.image.KancollePcImage;
 
 import net.sourceforge.tess4j.ITessAPI.TessPageIteratorLevel;
 import net.sourceforge.tess4j.ITesseract;
@@ -43,34 +42,6 @@ public class OcrService {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public RelationalDto ocrTest() {
-        //        test();
-        Path p =
-            Paths.get(
-                    "J:\\ProgramFiles\\Admiral_s_Desk\\SS\\20180822224149229.png");
-
-        KancollePcImage image;
-
-        try {
-            //                    image = new KancollePcImage(ImageIO.read(p.toFile()));
-            return doOcr(ImageIO.read(p.toFile()), KancollePcImage.class);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
-        //
-        //        TKancolleResorcesDto d = (TKancolleResorcesDto) image.doOcr();
-        //
-        //        System.out.println(MessageFormat.format("fuel:{0}", d.getFuel()));
-        //        System.out.println(MessageFormat.format("ammo:{0}", d.getAmmo()));
-        //        System.out.println(MessageFormat.format("steel:{0}", d.getSteel()));
-        //        System.out.println(MessageFormat.format("bauxite:{0}", d.getBauxite()));
-        //        System.out.println(MessageFormat.format("bucket:{0}", d.getBucket()));
-        //
-        //        return d;
     }
 
     public void test() {

@@ -37,10 +37,6 @@ public abstract class BaseImage {
 
     protected ITesseract iTesseract = new Tesseract();
 
-    public BaseImage(Path path) {
-        img = path;
-    }
-
     public BaseImage(BufferedImage bi) {
         bufferedImage = bi;
         iTesseract.setDatapath("/app/lib/tesseract/tessdata");

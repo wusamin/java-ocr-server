@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wusa.ocrserver.base.BaseImage;
-import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.OcrRequestBody;
 import com.wusa.ocrserver.image.KancollePcImage;
 import com.wusa.ocrserver.service.OcrService;
@@ -30,12 +29,6 @@ public class OcrController {
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> test() {
         return Map.of("message", "ok");
-    }
-
-    @RequestMapping(value = "/ocrtest", produces = MediaType.APPLICATION_JSON_VALUE)
-    public RelationalDto ocrTest() {
-
-        return ocrService.ocrTest();
     }
 
     @PostMapping(value = "/imagetest", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,7 +65,7 @@ public class OcrController {
                     clazz);
         } catch (IOException e) {
             e.printStackTrace();
-            return Map.of("error", e);
+            return Map.of("error", "an error has occured.");
         }
     }
 
