@@ -8,18 +8,18 @@ public class KancolleAndroid extends KancolleImage {
         super(bi);
 
         /** 燃料 */
-        fuel = new Rectangle(1671, 77, 111, 32);
+        fuel = new Rectangle(1545, 71, 100, 33);
 
         /** 弾薬座標 */
-        ammo = new Rectangle(1671, 117, 111, 32);
+        ammo = new Rectangle(1545, 110, 100, 30);
 
         /** 鋼材座標 */
-        steel = new Rectangle(1830, 77, 111, 32);
+        steel = new Rectangle(1690, 71, 100, 33);
 
         /** ボーキサイト座標 */
-        bauxite = new Rectangle(1830, 117, 111, 32);
+        bauxite = new Rectangle(1690, 110, 111, 32);
 
         /** 修復剤座標 */
-        bucket = new Rectangle(1700, 26, 87, 32);
+        bucket = new Rectangle(1569, 23, 75, 30);
     }
 }
