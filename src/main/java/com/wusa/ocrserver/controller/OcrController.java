@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wusa.ocrserver.base.BaseImage;
+import com.wusa.ocrserver.base.RelationalDto;
 import com.wusa.ocrserver.dto.OcrRequestBody;
 import com.wusa.ocrserver.image.KancolleAndroid;
 import com.wusa.ocrserver.service.OcrService;
@@ -56,12 +58,17 @@ public class OcrController {
 
     @SuppressWarnings("unchecked")
     @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object doOcr(@ModelAttribute OcrRequestBody reqBody) {
+    public ResponseEntity<? extends Object> doOcr(
+            @ModelAttribute OcrRequestBody reqBody) {
 
         Class<? extends BaseImage> clazz;
 
-        log.info("ImageType : " + reqBody.getImageType());
-        log.info("FileName: " + reqBody.getFileName());
+        log.info(StringUtils.rightPad("ImageClass", 10)
+            + " : "
+            + reqBody.getImageType());
+        log.info(StringUtils.rightPad("FileName", 10)
+            + " : "
+            + reqBody.getFileName());
 
         try {
             clazz =
@@ -69,16 +76,20 @@ public class OcrController {
                         "com.wusa.ocrserver.image." + reqBody.getImageType());
         } catch (Exception e1) {
             e1.printStackTrace();
-            return Map.of("error", "There is no such a class.");
+            return new ResponseEntity<Map<String, String>>(
+                    Map.of("error", "There is no such a class."),
+                    HttpStatus.BAD_REQUEST);
         }
-
         try {
-            return ocrService.doOcr(ImageIO.read(
-                    new ByteArrayInputStream(reqBody.getImage().getBytes())),
-                    clazz);
+            return new ResponseEntity<RelationalDto>(
+                    ocrService.doOcr(ImageIO.read(new ByteArrayInputStream(
+                            reqBody.getImage().getBytes())), clazz),
+                    HttpStatus.OK);
         } catch (IOException e) {
             e.printStackTrace();
-            return Map.of("error", "an error has occured.");
+            return new ResponseEntity<Map<String, String>>(
+                    Map.of("error", "an error has occured."),
+                    HttpStatus.BAD_REQUEST);
         }
     }
 
