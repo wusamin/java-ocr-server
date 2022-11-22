@@ -92,5 +92,4 @@ public class OcrController {
                     HttpStatus.BAD_REQUEST);
         }
     }
-
 }
