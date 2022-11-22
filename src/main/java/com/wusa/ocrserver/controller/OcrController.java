@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,11 +24,8 @@ import com.wusa.ocrserver.dto.OcrRequestBody;
 import com.wusa.ocrserver.image.KancolleAndroid;
 import com.wusa.ocrserver.service.OcrService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
 @RequestMapping(value = "/ocr")
-@Slf4j
 public class OcrController {
 
     @Autowired
@@ -63,12 +59,12 @@ public class OcrController {
 
         Class<? extends BaseImage> clazz;
 
-        log.info(StringUtils.rightPad("ImageClass", 10)
-            + " : "
-            + reqBody.getImageType());
-        log.info(StringUtils.rightPad("FileName", 10)
-            + " : "
-            + reqBody.getFileName());
+//        log.info(StringUtils.rightPad("ImageClass", 10)
+//            + " : "
+//            + reqBody.getImageType());
+//        log.info(StringUtils.rightPad("FileName", 10)
+//            + " : "
+//            + reqBody.getFileName());
 
         try {
             clazz =

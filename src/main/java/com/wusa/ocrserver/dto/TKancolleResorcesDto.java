@@ -6,15 +6,133 @@ import java.util.Date;
 
 import com.wusa.ocrserver.base.RelationalDto;
 
-import lombok.Data;
 import net.sourceforge.tess4j.Word;
 
-@Data
 public class TKancolleResorcesDto implements Serializable, RelationalDto {
 
     @Override
     public Class<? extends RelationalDto> returnClass() {
         return TKancolleResorcesDto.class;
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
+    }
+
+    public String getAmmo() {
+        return ammo;
+    }
+
+    public void setAmmo(String ammo) {
+        this.ammo = ammo;
+    }
+
+    public String getSteel() {
+        return steel;
+    }
+
+    public void setSteel(String steel) {
+        this.steel = steel;
+    }
+
+    public String getBauxite() {
+        return bauxite;
+    }
+
+    public void setBauxite(String bauxite) {
+        this.bauxite = bauxite;
+    }
+
+    public String getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    public String getRecDate() {
+        return recDate;
+    }
+
+    public void setRecDate(String recDate) {
+        this.recDate = recDate;
+    }
+
+    public String getHyperLink() {
+        return hyperLink;
+    }
+
+    public void setHyperLink(String hyperLink) {
+        this.hyperLink = hyperLink;
+    }
+
+    public Date getInsDate() {
+        return insDate;
+    }
+
+    public void setInsDate(Date insDate) {
+        this.insDate = insDate;
+    }
+
+    public float getFuelConfidence() {
+        return fuelConfidence;
+    }
+
+    public void setFuelConfidence(float fuelConfidence) {
+        this.fuelConfidence = fuelConfidence;
+    }
+
+    public float getSteelConfidence() {
+        return steelConfidence;
+    }
+
+    public void setSteelConfidence(float steelConfidence) {
+        this.steelConfidence = steelConfidence;
+    }
+
+    public float getAmmoConfidence() {
+        return ammoConfidence;
+    }
+
+    public void setAmmoConfidence(float ammoConfidence) {
+        this.ammoConfidence = ammoConfidence;
+    }
+
+    public float getBauxiteConfidence() {
+        return bauxiteConfidence;
+    }
+
+    public void setBauxiteConfidence(float bauxiteConfidence) {
+        this.bauxiteConfidence = bauxiteConfidence;
+    }
+
+    public float getBucketConfidence() {
+        return bucketConfidence;
+    }
+
+    public void setBucketConfidence(float bucketConfidence) {
+        this.bucketConfidence = bucketConfidence;
+    }
+
+    public String getRecordFlg() {
+        return recordFlg;
+    }
+
+    public void setRecordFlg(String recordFlg) {
+        this.recordFlg = recordFlg;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     /**

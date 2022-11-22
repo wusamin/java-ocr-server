@@ -17,7 +17,6 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
 
-import lombok.Setter;
 import net.coobird.thumbnailator.Thumbnails;
 import net.sourceforge.tess4j.ITessAPI.TessPageIteratorLevel;
 import net.sourceforge.tess4j.ITesseract;
@@ -26,13 +25,23 @@ import net.sourceforge.tess4j.Word;
 import net.sourceforge.tess4j.util.ImageHelper;
 
 public abstract class BaseImage {
-    @Setter
+
     protected Path img;
 
-    @Setter
+    public void setImg(Path img) {
+        this.img = img;
+    }
+
+    public void setenv(String env) {
+        this.env = env;
+    }
+
+    public void setBufferedImage(BufferedImage bufferedImage) {
+        this.bufferedImage = bufferedImage;
+    }
+
     protected String env;
 
-    @Setter
     protected BufferedImage bufferedImage;
 
     protected ITesseract iTesseract = new Tesseract();
@@ -43,7 +52,7 @@ public abstract class BaseImage {
     }
 
     private DateTimeFormatter dateTimeFormat =
-        DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     public abstract RelationalDto doOcr();
 
@@ -58,8 +67,8 @@ public abstract class BaseImage {
     protected List<Word> getOcrResult(Path img, Rectangle rect)
             throws IOException {
         List<Word> newList =
-            iTesseract.getWords(zoomPict(getSubImg(img, rect)),
-                    TessPageIteratorLevel.RIL_TEXTLINE);
+                iTesseract.getWords(zoomPict(getSubImg(img, rect)),
+                        TessPageIteratorLevel.RIL_TEXTLINE);
 
         if (newList.size() > 0) {
             return newList;
@@ -77,10 +86,10 @@ public abstract class BaseImage {
      * @throws IOException
      */
     protected List<Word> getOcrResult(BufferedImage bufferedImage,
-            Rectangle rect) throws IOException {
+                                      Rectangle rect) throws IOException {
         List<Word> newList =
-            iTesseract.getWords(zoomPict(getSubImg(bufferedImage, rect)),
-                    TessPageIteratorLevel.RIL_TEXTLINE);
+                iTesseract.getWords(zoomPict(getSubImg(bufferedImage, rect)),
+                        TessPageIteratorLevel.RIL_TEXTLINE);
 
         if (newList.size() > 0) {
             return newList;
@@ -108,7 +117,7 @@ public abstract class BaseImage {
 
     /**
      * BufferedImageを座標矩形でくり抜く
-     * 
+     *
      * @param bi
      * @param rect
      * @return
@@ -135,9 +144,9 @@ public abstract class BaseImage {
         try {
             final SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
             final SimpleDateFormat dateFormat =
-                new SimpleDateFormat("yyyy/MM/dd");
+                    new SimpleDateFormat("yyyy/MM/dd");
             final long fileTimeMills =
-                Files.getLastModifiedTime(path).toMillis();
+                    Files.getLastModifiedTime(path).toMillis();
 
             // 前日の画像を翌日の7時に処理するため、7時までの画像を前日のものとして扱う
             if (Integer.valueOf(hourFormat.format(fileTimeMills)) < 7) {
@@ -159,9 +168,9 @@ public abstract class BaseImage {
     protected String generateRecDate(Path img) {
         String fileName = img.getFileName().toString();
         LocalDate fileDate =
-            LocalDate.of(Integer.valueOf(StringUtils.substring(fileName, 0, 4)),
-                    Integer.valueOf(StringUtils.substring(fileName, 4, 6)),
-                    Integer.valueOf(StringUtils.substring(fileName, 6, 8)));
+                LocalDate.of(Integer.valueOf(StringUtils.substring(fileName, 0, 4)),
+                        Integer.valueOf(StringUtils.substring(fileName, 4, 6)),
+                        Integer.valueOf(StringUtils.substring(fileName, 6, 8)));
         // 前日の画像を翌日の7時に処理するため、7時までの画像を前日のものとして扱う
         if (Integer.valueOf(StringUtils.substring(fileName, 8, 10)) < 7) {
             return fileDate.minusDays(1).toString();
