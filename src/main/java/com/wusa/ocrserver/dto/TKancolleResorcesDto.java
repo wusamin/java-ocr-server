@@ -230,10 +230,10 @@ public class TKancolleResorcesDto implements Serializable, RelationalDto {
             Class<?> cls = dto.getClass();
             cls.getMethod(methodName, String.class).invoke(dto, word.getText());
             cls.getMethod(methodName + "Confidence", float.class)
-                    .invoke(dto, word.getConfidence());
+                .invoke(dto, word.getConfidence());
         } catch (IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException | NoSuchMethodException
-                | SecurityException e) {
+                 | InvocationTargetException | NoSuchMethodException
+                 | SecurityException e) {
             e.printStackTrace();
         }
         return dto;

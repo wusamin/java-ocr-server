@@ -3,6 +3,7 @@ package com.wusa.ocrserver.dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class OcrRequestBody {
+
     private MultipartFile image;
 
     private String fileName;
@@ -34,6 +35,4 @@ public class OcrRequestBody {
     public void setImage(MultipartFile image) {
         this.image = image;
     }
-
-    //    private String token;
 }

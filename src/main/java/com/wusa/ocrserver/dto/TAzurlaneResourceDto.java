@@ -12,9 +12,6 @@ public class TAzurlaneResourceDto implements Serializable, RelationalDto {
         return TAzurlaneResourceDto.class;
     }
 
-    /**
-    *
-    */
     private static final long serialVersionUID = 1L;
 
     /**

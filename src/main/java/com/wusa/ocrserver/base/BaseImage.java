@@ -28,6 +28,12 @@ public abstract class BaseImage {
 
     protected Path img;
 
+    protected String env;
+
+    protected BufferedImage bufferedImage;
+
+    protected ITesseract iTesseract = new Tesseract();
+
     public void setImg(Path img) {
         this.img = img;
     }
@@ -39,12 +45,6 @@ public abstract class BaseImage {
     public void setBufferedImage(BufferedImage bufferedImage) {
         this.bufferedImage = bufferedImage;
     }
-
-    protected String env;
-
-    protected BufferedImage bufferedImage;
-
-    protected ITesseract iTesseract = new Tesseract();
 
     public BaseImage(BufferedImage bi) {
         bufferedImage = bi;
@@ -78,9 +78,9 @@ public abstract class BaseImage {
     }
 
     /**
-     * OCRの結果がない場合はからのリストを返却する
+     * OCRの結果がない場合は空のリストを返却する
      *
-     * @param img
+     * @param bufferedImage
      * @param rect
      * @return
      * @throws IOException
